@@ -38,6 +38,6 @@ public class PanelButton extends JPanel implements ActionListener{
     }
 
     private int getRandom(){
-        return rand.nextInt(11)+1;
+        return rand.nextInt(6)+1;
     }
 }
