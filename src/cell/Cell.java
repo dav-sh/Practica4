@@ -9,10 +9,9 @@ public class Cell extends JLabel {
         setVerticalAlignment(0);
         setBackground(Color.BLUE); //change color of background
         setOpaque(true); //see the background color
-        setSize(100, 100);
+        setSize(100, 100); //set dimensions of JLabel
         setForeground(Color.WHITE); //change color of text
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-        //setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 5)); //create a new border and define color and thickness (grosor)
         
     }
     

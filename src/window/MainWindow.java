@@ -8,7 +8,8 @@ public class MainWindow extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("HolaMundo");
         setBounds(500, 200, 700, 550);
-        getContentPane().add(new PanelCell());
+        getContentPane().add(new PanelCell(),"Center");
+        getContentPane().add(new PanelButton(),"West");
         setVisible(true);
         
         
