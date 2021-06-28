@@ -1,9 +1,9 @@
 package src.executable;
 
-import src.window.MainWindow;
+import src.windows.MainMenu;
 
 public class Main {
     public static void main(String[] args){
-        MainWindow window = new MainWindow();
+        MainMenu window = new MainMenu();
     }
 }

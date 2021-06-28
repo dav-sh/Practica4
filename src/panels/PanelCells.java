@@ -1,15 +1,15 @@
-package src.window;
+package src.panels;
 
 import javax.swing.*;
 import java.awt.*;
 import src.cell.Cell; 
 
-public class PanelCell extends JPanel {
+public class PanelCells extends JPanel {
     JLabel label;
     int rows = 10;
     int columns = 10;
     Cell[][]celdas= new Cell[rows][columns];
-    public PanelCell(){
+    public PanelCells(){
         setSize(690,550);
         fillArray();
         celdas[2][1].setBackground(Color.RED);
