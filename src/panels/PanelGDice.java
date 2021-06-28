@@ -9,10 +9,12 @@ public class PanelGDice extends JPanel implements ActionListener{
     Random rand = new Random();
     int random = 0;
     JLabel label;
-    int turno =1;
+    int turno =0;
     PanelGCells cellsP;
-    public PanelGDice(PanelGCells cellsP){
+    int [] players_Id;
+    public PanelGDice(PanelGCells cellsP, int[] players_Id){
         this.cellsP = cellsP;
+        this.players_Id = players_Id;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(Box.createRigidArea(new Dimension(0,100)));
         addLabel("-");
@@ -36,18 +38,25 @@ public class PanelGDice extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        System.out.println("Turno Jugador: "+ turno);
+        cambiaTurno();
         this.random = getRandom();
-        pintaCell(this.random);
+        cellsP.paintCell(this.turno, this.random);
         label.setText(" "+this.random);
-        turno++;
+        this.turno++;
 
         
         
     }
-    public void pintaCell(int turno){
-        cellsP.celdas[turno][turno].setBackground(Color.RED);
-        cellsP.paintCell(turno+1);
+
+
+    public void cambiaTurno(){
+        if(this.turno<players_Id.length){
+            System.out.println("Turno Jugador: "+ players_Id[this.turno]);
+        }else{
+            this.turno =0;
+            System.out.println("reset ....");
+            System.out.println("Turno Jugador: "+ players_Id[this.turno]);
+        }
     }
 
 

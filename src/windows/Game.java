@@ -18,7 +18,7 @@ public class Game extends JFrame{
 
     public void createJFGame(){
         cellsP = new PanelGCells();
-        diceP = new PanelGDice(cellsP);
+        diceP = new PanelGDice(cellsP,players_Id);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //not visible
         this.getContentPane().add(diceP,"West");
         this.getContentPane().add(cellsP,"Center");
@@ -29,7 +29,7 @@ public class Game extends JFrame{
         //getContentPane().add(new PanelGDice(),"West"); //add PanelButton
         setVisible(true);
     }
-    public int[] start(){
+    public void start(){
         System.out.println("Ingresa la cantidad de jugadores...");
         int numP = scanner.nextInt();  
         players_Id = new int[numP];
@@ -37,9 +37,8 @@ public class Game extends JFrame{
             System.out.println("P: "+i);
             int tmp = scanner.nextInt();
             players_Id[i] = tmp;
-
         }
-        return players_Id;
+        System.out.println("Finalizado ... creando Game");
     }
 
     
