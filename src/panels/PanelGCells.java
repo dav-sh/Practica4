@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import src.cell.Cell; 
 
-public class PanelCells extends JPanel {
+public class PanelGCells extends JPanel {
     JLabel label;
     int rows = 10;
     int columns = 10;
     Cell[][]celdas= new Cell[rows][columns];
-    public PanelCells(){
+    public PanelGCells(){
         setSize(690,550);
         fillArray();
         celdas[2][1].setBackground(Color.RED);

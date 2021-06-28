@@ -1,6 +1,8 @@
 package src.panels;
 import java.awt.*;
 import javax.swing.*;
+
+import src.windows.Game;
 import java.awt.event.*;
 
 
@@ -48,6 +50,7 @@ public class PanelMenu extends JPanel implements ActionListener{
                 break;
             case "Start Game":
                 System.out.println("Hola soy Start Game");
+                Game game = new Game();
                 break;
             case "Statistics":
                 System.out.println("Hola soy Statistics");

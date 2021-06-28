@@ -5,10 +5,10 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class PanelButton extends JPanel implements ActionListener{
+public class PanelGDice extends JPanel implements ActionListener{
     Random rand = new Random();
     JLabel label;
-    public PanelButton(){
+    public PanelGDice(){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(Box.createRigidArea(new Dimension(0,100)));
         addLabel("-");
