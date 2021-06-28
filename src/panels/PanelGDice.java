@@ -7,8 +7,12 @@ import java.util.*;
 
 public class PanelGDice extends JPanel implements ActionListener{
     Random rand = new Random();
+    int random = 0;
     JLabel label;
-    public PanelGDice(){
+    int turno =1;
+    PanelGCells cellsP;
+    public PanelGDice(PanelGCells cellsP){
+        this.cellsP = cellsP;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(Box.createRigidArea(new Dimension(0,100)));
         addLabel("-");
@@ -32,10 +36,22 @@ public class PanelGDice extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        label.setText(" "+getRandom());
+        System.out.println("Turno Jugador: "+ turno);
+        pintaCell(turno);
+        this.random = getRandom();
+        label.setText(" "+this.random);
+        turno++;
+
         
         
     }
+    public void pintaCell(int turno){
+        cellsP.celdas[turno][turno].setBackground(Color.RED);
+        cellsP.paintCell(turno+1);
+    }
+
+
+
 
     private int getRandom(){
         return rand.nextInt(6)+1;

@@ -28,4 +28,10 @@ public class PanelGCells extends JPanel {
 
     }
 
+    public void paintCell(int Random){
+        celdas[Random][Random].setBackground(Color.PINK);
+    }
+
+
+
 }
