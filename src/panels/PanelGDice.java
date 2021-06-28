@@ -37,8 +37,8 @@ public class PanelGDice extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         System.out.println("Turno Jugador: "+ turno);
-        pintaCell(turno);
         this.random = getRandom();
+        pintaCell(this.random);
         label.setText(" "+this.random);
         turno++;
 
