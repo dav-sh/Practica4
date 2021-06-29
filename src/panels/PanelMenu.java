@@ -2,11 +2,13 @@ package src.panels;
 import java.awt.*;
 import javax.swing.*;
 
-import src.windows.Game;
+import src.windows.*;
+
 import java.awt.event.*;
 
 
 public class PanelMenu extends JPanel implements ActionListener{
+    MPlayers mplayers = new MPlayers();
     private String[] buttons = {"See Players","Add New Player","Start Game","Statistics"};
     public PanelMenu(){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -46,9 +48,11 @@ public class PanelMenu extends JPanel implements ActionListener{
         String actionCommand = e.getActionCommand();
         switch(actionCommand){
             case "See Players":
+                mplayers.seePlayers();
                 System.out.println("Hola soy see players");
                 break;  
             case "Add New Player":
+                mplayers.addPlayer();
                 System.out.println("Hola soy Add New Player");
                 break;
             case "Start Game":

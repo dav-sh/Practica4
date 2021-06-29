@@ -2,8 +2,8 @@ package src.windows;
 
 import javax.swing.*;
 
-import src.panels.PanelGDice;
-import src.panels.PanelGCells;
+import src.panels.*;
+
 import java.util.*;
 
 public class Game extends JFrame{
