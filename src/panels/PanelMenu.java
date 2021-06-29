@@ -11,7 +11,7 @@ public class PanelMenu extends JPanel implements ActionListener{
     MPlayers mplayers = new MPlayers();
     private String[] buttons = {"See Players","Add New Player","Start Game","Statistics"};
 
-    
+
     public PanelMenu(){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(Box.createRigidArea(new Dimension(0,100)));
@@ -59,7 +59,7 @@ public class PanelMenu extends JPanel implements ActionListener{
                 break;
             case "Start Game":
                 System.out.println("Hola soy Start Game");
-                new Game();  //Game game = 
+                new Game(mplayers.getPlayer());  //Game game = 
                 break;
             case "Statistics":
                 System.out.println("Hola soy Statistics");

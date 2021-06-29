@@ -11,6 +11,7 @@ public class MPlayers extends JFrame{
     
     PaneladdPlayer p = new PaneladdPlayer();
     Player [] players= null;
+
     
     //ArrayList<Player> players = new ArrayList<Player>();
     public MPlayers(){
@@ -39,5 +40,8 @@ public class MPlayers extends JFrame{
         
         
         
+    }
+    public Player[] getPlayer(){
+        return players;
     }
 }

@@ -3,6 +3,7 @@ package src.windows;
 import javax.swing.*;
 
 import src.panels.*;
+import src.player.Player;
 
 import java.util.*;
 
@@ -11,7 +12,9 @@ public class Game extends JFrame{
     PanelGDice diceP; //
     PanelGCells cellsP; //
     Scanner scanner = new Scanner(System.in);
-    public Game(){
+    Player[] players;
+    public Game(Player[] players){
+        this.players = players;
         start();
         createJFGame();
     }
@@ -30,6 +33,11 @@ public class Game extends JFrame{
         setVisible(true);
     }
     public void start(){
+        if(verificationPlayers(players)){
+            System.out.println("Si existen "+""+"Players");    
+        }else{
+            System.out.println("No existen");
+        }
         System.out.println("Ingresa la cantidad de jugadores...");
         int numP = scanner.nextInt();  
         players_Id = new int[numP];
@@ -39,6 +47,17 @@ public class Game extends JFrame{
             players_Id[i] = tmp;
         }
         System.out.println("Finalizado ... creando Game");
+        //players[0].setName("Cambie name"); si estamos apuntando al mismo espacio en memoria :D
+
+    }
+
+    public boolean verificationPlayers(Player[] players){
+        boolean result = false;
+        for(int i=0; i<players.length; i++){
+            System.out.println("Name: "+ players[i].getName());
+            result = true; 
+        }
+        return result;
     }
 
     

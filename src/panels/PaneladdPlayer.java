@@ -37,6 +37,8 @@ public class PaneladdPlayer extends JPanel implements ActionListener{
         System.out.println(this.name + " " + this.lastName+"Dentro de action");
         players.add(new Player(this.name, this.lastName, this.count_Id));
         count_Id++;
+        tf2.setText("");
+        tf1.setText("");
         // TODO Auto-generated method stub
         
     }
