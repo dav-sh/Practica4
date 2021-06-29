@@ -10,7 +10,7 @@ public class PanelGDice extends JPanel implements ActionListener{
     int random = 0;
     JLabel label;
     JLabel label2;
-    int turno =1;
+    int turno =0;
     PanelGCells cellsP;
     int [] players_Id;
     public PanelGDice(PanelGCells cellsP, int[] players_Id){
@@ -49,11 +49,13 @@ public class PanelGDice extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        cambiaTurno();
+        System.out.println("turno actual " + this.turno);
         this.random = getRandom();
         this.label.setText(" "+this.random);
         cellsP.paintCell(this.turno, this.random);
         this.turno++;
+        cambiaTurno();
+        System.out.println("Nuevo turno " + this.turno);
 
         
 
@@ -64,12 +66,12 @@ public class PanelGDice extends JPanel implements ActionListener{
 
     public void cambiaTurno(){
         if(this.turno<=(players_Id.length-1)){
-            this.label2.setText("Turno Jugador: "+ players_Id[this.turno]);
+            this.label2.setText("Turno Jugador: "+ " "+(this.turno+1));  //players_Id[this.turno] +
             //System.out.println("Turno Jugador: "+ players_Id[this.turno]);
         }else{
             this.turno =0;
             System.out.println("reset ....");
-            this.label2.setText("Turno Jugador: "+ players_Id[this.turno]);
+            this.label2.setText("Turno Jugador: "+ " "+(this.turno+1));//players_Id[this.turno]);
             //System.out.println("Turno Jugador: "+ players_Id[this.turno]);
         }
     }

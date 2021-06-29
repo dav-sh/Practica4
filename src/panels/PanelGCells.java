@@ -42,7 +42,7 @@ public class PanelGCells extends JPanel {
         int residuoColumn=0;
         // System.out.println("random "+random);
         // System.out.println("row "+row + "column "+column);
-        if((column+random) >= columns && row < rows){ //si la suma del numero random, mas la posicion actual de columna es mayor al numero de columnas se calcula nueva fila siempre y cuando la fila sea menor al numero de filas
+        if((column+random) >= columns && row < rows){ //si la suma del numero random mas la posicion actual de columna es mayor al numero de columnas se calcula nueva fila siempre y cuando la fila sea menor al numero de filas
             // System.out.println("Entre..");
             while((column+random)>=columns){
                 random--;
@@ -53,16 +53,25 @@ public class PanelGCells extends JPanel {
             // System.out.println("random "+random);
             // System.out.println("residuo "+residuoColumn);
             // System.out.println("row "+row);
-            position[0]=row+1;  //row
-            position[1]=residuoColumn-1; //a y le sumamos 1   column
+            if((row + 1) >= rows){
+                position[0]=row; //row
+                position[1]=column;
+                System.out.println("No puedes avanzar mas");
+            }else{
+                position[0]=row+1;  //row
+                position[1]=residuoColumn-1; //a y le sumamos 1   column
+
+            }
 
             
-        }else{ //
+        }else if(  (column+random) < columns && row < rows  ){ //si la suma del random y la columan es menor a las columnas y la fila es menor que las filas
             position[0]=row; //row
             position[1]=column+random; //column
+            
         }
         return position;
     }
+    
     
 
 
