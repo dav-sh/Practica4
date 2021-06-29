@@ -19,7 +19,7 @@ public class Game extends JFrame{
     }
 
     public void createJFGame(){
-        cellsP = new PanelGCells();
+        cellsP = new PanelGCells(players_Id);
         diceP = new PanelGDice(cellsP,players_Id);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //not visible
         this.getContentPane().add(diceP,"West");
@@ -43,7 +43,7 @@ public class Game extends JFrame{
 
                 try {
                     numberOfPlayers = Integer.parseInt(JOptionPane.showInputDialog( "Enter the number of players (Max: 6).. (A: "+players.length+")"));
-                    if(numberOfPlayers>0 && numberOfPlayers<=6){ //only 6 players
+                    if(numberOfPlayers>0 && numberOfPlayers<=6 && numberOfPlayers<=players.length){ //only 6 players
                         players_Id = new int[numberOfPlayers]; //inicia el array
                         if(addID(numberOfPlayers)){
                             createJFGame();
@@ -87,12 +87,12 @@ public class Game extends JFrame{
         while(contador<numberOfPlayers){
             try {
                 int idtmp = Integer.parseInt(JOptionPane.showInputDialog( "Enter Player # "+(contador+1)));
-                if(idexists(idtmp)){
+                if(idexists(idtmp) && idRepeat(idtmp)){
                     players_Id[contador] = idtmp;
                     System.out.println("Si se agrego");
                     contador++;
                 }else{
-                    JOptionPane.showMessageDialog(null, "Id Player doesn't exist");
+                    JOptionPane.showMessageDialog(null, "Id Player doesn't exist or Repeated Id");
 
                 }
                 
@@ -102,6 +102,16 @@ public class Game extends JFrame{
         }
         return true;
         
+    }
+
+    private boolean idRepeat(int idtmp){
+        boolean continuear = true;
+        for(int i = 0; i<players_Id.length; i++){
+            if(players_Id[i]==idtmp){
+                continuear = false;
+            }
+        }
+        return continuear;
     }
 
     
