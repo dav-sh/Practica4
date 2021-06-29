@@ -10,6 +10,7 @@ public class MPlayers extends JFrame{
     
     PaneladdPlayer p = new PaneladdPlayer();
     Player [] players= null;
+    //Player [] players;
 
     
     //ArrayList<Player> players = new ArrayList<Player>();
@@ -63,8 +64,11 @@ public class MPlayers extends JFrame{
         
     }
     public Player[] getPlayer(){
-        return players;
+        return p.getPlayers();
     }
+
+
+
     public void statistics(){
         DefaultListModel<String> listP = new DefaultListModel<>();
         String str;
