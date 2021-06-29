@@ -9,7 +9,6 @@ import java.util.*;
 
 public class Game extends JFrame{
     private int[] players_Id; //here save id players in game
-    private int[] availableIds; //
     PanelGDice diceP; //
     PanelGCells cellsP; //
     Scanner scanner = new Scanner(System.in);
@@ -28,72 +27,82 @@ public class Game extends JFrame{
 
         setTitle("Snakes and Ladders"); //title of game
         setBounds(500, 200, 700, 550); //size and position of JFrame
-        //getContentPane().add(new PanelGCells(),"Center"); //add PanelCells
-        //getContentPane().add(new PanelGDice(),"West"); //add PanelButton
         setVisible(true);
     }
+
+
+
     public void start(){
-        System.out.println(players.length);
+        System.out.println("c_p"+ players.length);
         try{ 
 
             if(players.length>0){ //verify players
-                availableIds = new int[players.length];
-                //players[0].setName("Cambie name"); //solo es test
                 int numberOfPlayers=0;
-                System.out.println("Si existen Players");  
-                System.out.println("Ingresa la cantidad de jugadores...");
-                JOptionPane.showMessageDialog(null, "Number of players available: " + players.length);
+                
+                //players[0].setName("Cambie name"); //solo es test
+
                 try {
-                    numberOfPlayers = Integer.parseInt(JOptionPane.showInputDialog( "Enter the number of players .. (A: "+players.length+")"));
-                    
-                } catch (Exception e) {
-                    //TODO: handle exception
-                    JOptionPane.showMessageDialog(null, "Incorrect Data");
-                }
-                if(numberOfPlayers<=0 || numberOfPlayers>players.length){
-                    JOptionPane.showMessageDialog(null, "number of players not valid");
-    
-                }else{
-                    players_Id = new int[numberOfPlayers];
-                    int idtmp;
-                    for(int i=0; i<players_Id.length; i++){
-                        try {
-                            idtmp = Integer.parseInt(JOptionPane.showInputDialog( "Enter Player # "+(i+1)));
-                            for(int j = 0; j<players.length; j++){ //aqui me quede, tratando de hacer un metodo para validar el id
-                                if(players[j].getId()==idtmp){
-                                    players_Id[i] = idtmp;
-                                    System.out.println("agregado: "+idtmp);
-
-                                }else{
-                                    System.out.println("No estaba");
-                                }
-                            }
-                            
-                        } catch (Exception e) {
-                            //TODO: handle exception
-                            JOptionPane.showMessageDialog(null, "Incorrect Id... Try again");
-                            JOptionPane.showMessageDialog(null, "Return Main Menu ....");
-                            break;
+                    numberOfPlayers = Integer.parseInt(JOptionPane.showInputDialog( "Enter the number of players (Max: 6).. (A: "+players.length+")"));
+                    if(numberOfPlayers>0 && numberOfPlayers<=6){ //only 6 players
+                        players_Id = new int[numberOfPlayers]; //inicia el array
+                        if(addID(numberOfPlayers)){
+                            createJFGame();
                         }
-                    }
-                    System.out.println("Finalizado ... creando Game");
-                    createJFGame();
+
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Number of players not valid");
+
+                    } 
+                }catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Number of players not valid, please enter a valid number");
 
                 }
+            }else{
+                JOptionPane.showMessageDialog(null, "Please add more players");
 
             }
-            else{
-                JOptionPane.showMessageDialog(null, "Please add players");
-
-            }
-        }catch(Exception e){
+        }catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Please add more players");
 
-        }
-
+        }     
 
     }
 
+
+    
+    private boolean idexists(int id){
+        boolean op = false;
+        for (int i = 0; i < players.length; i++){
+            if(players[i].getId()==id){
+                op = true;
+                break;
+
+            }
+        }
+        return op;
+    }
+
+    public boolean addID(int numberOfPlayers){
+        int contador =0;
+        while(contador<numberOfPlayers){
+            try {
+                int idtmp = Integer.parseInt(JOptionPane.showInputDialog( "Enter Player # "+(contador+1)));
+                if(idexists(idtmp)){
+                    players_Id[contador] = idtmp;
+                    System.out.println("Si se agrego");
+                    contador++;
+                }else{
+                    JOptionPane.showMessageDialog(null, "Id Player doesn't exist");
+
+                }
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Id not valid");
+            }
+        }
+        return true;
+        
+    }
 
     
 }
