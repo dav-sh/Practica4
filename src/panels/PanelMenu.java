@@ -10,6 +10,8 @@ import java.awt.event.*;
 public class PanelMenu extends JPanel implements ActionListener{
     MPlayers mplayers = new MPlayers();
     private String[] buttons = {"See Players","Add New Player","Start Game","Statistics"};
+
+    
     public PanelMenu(){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(Box.createRigidArea(new Dimension(0,100)));
@@ -48,12 +50,12 @@ public class PanelMenu extends JPanel implements ActionListener{
         String actionCommand = e.getActionCommand();
         switch(actionCommand){
             case "See Players":
-                mplayers.seePlayers();
                 System.out.println("Hola soy see players");
+                mplayers.seePlayers();
                 break;  
             case "Add New Player":
-                mplayers.addPlayer();
                 System.out.println("Hola soy Add New Player");
+                mplayers.addPlayer();
                 break;
             case "Start Game":
                 System.out.println("Hola soy Start Game");

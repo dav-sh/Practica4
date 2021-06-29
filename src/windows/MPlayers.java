@@ -8,21 +8,28 @@ import src.player.Player;
 
 
 public class MPlayers extends JFrame{
-    private int count_Id;
     
-    ArrayList<Player> players = new ArrayList<Player>();
+    PaneladdPlayer p = new PaneladdPlayer();
+    Player [] players= null;
+    
+    //ArrayList<Player> players = new ArrayList<Player>();
     public MPlayers(){
-
+        
     }
 
 
     public void seePlayers(){
-        for(int i=0; i<players.size();i++){
-            System.out.println(players.get(i));
+        players = p.getPlayers();
+        for(int i = 0; i<players.length; i++){
+            System.out.println(players[i].getName()+ " " + players[i].getId());
         }
+
+
+        // for(int i=0; i<players.size();i++){
+        //     System.out.println(players.get(i).getId() + " " + players.get(i).getName()+ " " + players.get(i).getLastName());
+        // }
     }
     public void addPlayer(){
-        PaneladdPlayer p = new PaneladdPlayer();
         JFrame jadd = new JFrame();
         jadd.setTitle("Add New Player"); //title of game
         jadd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -32,9 +39,5 @@ public class MPlayers extends JFrame{
         
         
         
-        String name = p.getNames();
-        String lastName = p.getLastName();
-        count_Id++;
-        players.add(new Player(name, lastName, count_Id));
     }
 }

@@ -2,35 +2,41 @@ package src.panels;
 
 import java.awt.*;
 import javax.swing.*;
+
+import src.player.Player;
+
 import java.awt.event.*;
+import java.util.*;
+
 
 public class PaneladdPlayer extends JPanel implements ActionListener{
-    JTextField tf1,tf2;
-    JLabel label;
-    JButton btn;
+    private JTextField tf1,tf2;
+    private JLabel label;
+    private JButton btn;
+    private int count_Id=1;
     private String name,lastName;
+    private ArrayList<Player> players = new ArrayList<Player>();
+
     
     public PaneladdPlayer(){
         setLayout(new GridLayout(3,3));
         addLabel("Name");
         tf1=addText("Name");
         add(tf1);
-
         addLabel("Last Name");
         tf2=addText("Last Name");
         add(tf2);
-
         btn=addButton("Verificar");
         add(btn);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        name = tf1.getText();
-        lastName = tf2.getText();
-        System.out.println(name + " " + lastName);
-
-
+        this.name = tf1.getText();
+        this.lastName = tf2.getText();
+        System.out.println(this.name + " " + this.lastName+"Dentro de action");
+        players.add(new Player(this.name, this.lastName, this.count_Id));
+        count_Id++;
         // TODO Auto-generated method stub
         
     }
@@ -53,11 +59,8 @@ public class PaneladdPlayer extends JPanel implements ActionListener{
         return new JTextField(name);  
     }
 
-    public String getNames(){
-        return this.name;
+    public Player[] getPlayers(){
+        return players.toArray(new Player[players.size()]);
     }
-    public String getLastName(){
-        return this.lastName;
-    }
-    
+
 }
