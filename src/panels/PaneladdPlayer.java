@@ -21,24 +21,30 @@ public class PaneladdPlayer extends JPanel implements ActionListener{
     public PaneladdPlayer(){
         setLayout(new GridLayout(3,3));
         addLabel("Name");
-        tf1=addText("Name");
+        tf1=addText("");
         add(tf1);
         addLabel("Last Name");
-        tf2=addText("Last Name");
+        tf2=addText("");
         add(tf2);
-        btn=addButton("Verificar");
+        btn=addButton("Verify");
         add(btn);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.name = tf1.getText();
-        this.lastName = tf2.getText();
-        System.out.println(this.name + " " + this.lastName+"Dentro de action");
-        players.add(new Player(this.name, this.lastName, this.count_Id));
-        count_Id++;
-        tf2.setText("");
-        tf1.setText("");
+        if(tf1.getText().isEmpty() || tf2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Empty fields");
+        }else{
+            this.name = tf1.getText();
+            this.lastName = tf2.getText();
+            System.out.println(this.name + " " + this.lastName+"Dentro de action");
+            players.add(new Player(this.name, this.lastName, this.count_Id));
+            JOptionPane.showMessageDialog(null, "Successful");
+            count_Id++;
+            tf2.setText("");
+            tf1.setText("");
+            
+        }
         // TODO Auto-generated method stub
         
     }
@@ -53,7 +59,7 @@ public class PaneladdPlayer extends JPanel implements ActionListener{
     private void addLabel(String name){
         this.label = new JLabel(name, JLabel.CENTER);
         this.label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        this.label.setFont(new Font("BOLD", Font.BOLD, 25));
+        this.label.setFont(new Font("BOLD", Font.BOLD, 20));
         add(this.label, BorderLayout.CENTER);
     }
 

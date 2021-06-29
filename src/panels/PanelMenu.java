@@ -63,6 +63,7 @@ public class PanelMenu extends JPanel implements ActionListener{
                 break;
             case "Statistics":
                 System.out.println("Hola soy Statistics");
+                mplayers.statistics();
                 break;
             default:
 
