@@ -3,7 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Cell extends JLabel {
+    boolean penitencia;
     public Cell(String name){
+        this.penitencia = false;
         setText(name);
         setHorizontalAlignment(0); 
         setVerticalAlignment(0);
@@ -14,5 +16,11 @@ public class Cell extends JLabel {
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 5)); //create a new border and define color and thickness (grosor)
         
     }
+    public boolean getPenitencia(){
+        return penitencia;
+    }
+
+    
+
     
 }

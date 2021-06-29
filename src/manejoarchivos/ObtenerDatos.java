@@ -5,6 +5,10 @@ public class ObtenerDatos {
     public ObtenerDatos(String[] texto) {
         datos = texto;
     }
+
+
+
+    
     public String getDatos(String nameData){
         String result = "";
         int ind;
@@ -13,7 +17,6 @@ public class ObtenerDatos {
                 //if(datos[i].startsWith(nameData)){
                 System.out.println("Encontrado en "+ ind);
                 result = datos[i];
-                break;
             }//else{
             //     System.out.println("No existe datos");
             // }

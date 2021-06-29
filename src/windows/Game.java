@@ -1,18 +1,22 @@
 package src.windows;
 
 import javax.swing.*;
-
 import src.panels.*;
 import src.player.Player;
-
 import java.util.*;
+
+
+
 
 public class Game extends JFrame{
     private int[] players_Id; //here save id players in game
     PanelGDice diceP; //
     PanelGCells cellsP; //
-    Scanner scanner = new Scanner(System.in);
+    //Scanner scanner = new Scanner(System.in);
     Player[] players;
+
+
+
     public Game(Player[] players){
         this.players = players;
         start();
@@ -114,5 +118,8 @@ public class Game extends JFrame{
         return continuear;
     }
 
+
+
+    
     
 }

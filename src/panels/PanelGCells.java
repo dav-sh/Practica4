@@ -4,6 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import src.cell.Cell; 
 
+
+//lecuta de archivos
+import src.manejoarchivos.LecturaA;
+import src.manejoarchivos.ObtenerDatos;
+import src.manejoarchivos.ObtenerValores;
+
+
 public class PanelGCells extends JPanel {
     JLabel label;
     int rows = 10;
@@ -13,7 +20,13 @@ public class PanelGCells extends JPanel {
     int numberPlayers;
     int [] posX;
     int [] posY;
+
+
+
+
     public PanelGCells(int[] players_Id){
+        manejoarchivos();
+
         this.players_Id = players_Id;
         this.numberPlayers = players_Id.length;
         this.posX = new int[numberPlayers];
@@ -105,6 +118,33 @@ public class PanelGCells extends JPanel {
         posX[turnoP]=pos[0];
         posY[turnoP]=pos[1];
     }
+
+    public void manejoarchivos(){
+        String path = "d:/Desktop/sinErrores.txt";
+        LecturaA lectura = new LecturaA();
+        String[] texto = lectura.getLines(path); //array de lineas con todo el texto
+        for(int i=0; i<texto.length;i++){
+            System.out.println(texto[i]);
+        }
+        System.out.println("---------------------");
+
+        //obtengo una linea especifica para posteriormente manipularla
+        String [] penitencias = {"tablero","pierdeturno","tiradados","avanza","retrocede","subida","bajada"};
+        String nameData = "subida";
+        ObtenerDatos datos = new ObtenerDatos(texto);
+        String linea = datos.getDatos(nameData);
+        System.out.println(linea);
+        //separo el nombre y los valores de la linea anterior
+        ObtenerValores obtengo = new ObtenerValores();
+        int[] valores = obtengo.seeValues(linea);
+        System.out.println("Valores capturatos");
+        for (int i = 0; i < valores.length; i++){
+
+            System.out.println(valores[i]);
+        }
+    }
+
+
 
 
 
