@@ -50,7 +50,10 @@ public class Game extends JFrame{
                     if(numberOfPlayers>0 && numberOfPlayers<=6 && numberOfPlayers<=players.length){ //only 6 players
                         players_Id = new int[numberOfPlayers]; //inicia el array
                         if(addID(numberOfPlayers)){
+                            System.out.println("Estoy bien");
                             createJFGame();
+                            System.out.println("se creo");
+
                         }
 
                     }else{
