@@ -31,19 +31,19 @@ public class PanelGCells extends JPanel {
         int rows =10;
         int columns = 10;
         int residuoColumn=0;
-        System.out.println("random "+random);
-        System.out.println("row "+row + "column "+column);
+        // System.out.println("random "+random);
+        // System.out.println("row "+row + "column "+column);
         if((column+random) >= columns){ //si la suma del numero random, mas la posicion actual de x es mayor al numero de columnas se calcula nuevo Y
-            System.out.println("Entre..");
+            // System.out.println("Entre..");
             while((column+random)>=columns){
                 random--;
                 residuoColumn++;
-                System.out.println("rnd: "+ random + "residuo: "+residuoColumn);
+                // System.out.println("rnd: "+ random + "residuo: "+residuoColumn);
             }
-            System.out.println("Final....");
-            System.out.println("random "+random);
-            System.out.println("residuo "+residuoColumn);
-            System.out.println("row "+row);
+            // System.out.println("Final....");
+            // System.out.println("random "+random);
+            // System.out.println("residuo "+residuoColumn);
+            // System.out.println("row "+row);
             position[0]=row+1;  //row
             position[1]=residuoColumn-1; //a y le sumamos 1   column
 
