@@ -167,7 +167,7 @@ public class PanelGCells extends JPanel {
                         String linea = result;
                         ObtenerValores obtengo = new ObtenerValores();
                         int[] valores = obtengo.seeValues(linea);
-
+                        
                         if(nameData.equals("pierdeturno")){
                             celdas[valores[0]][valores[1]].setBackground(Color.BLACK);
                         }else if(nameData.equals("tiradados")){
@@ -190,7 +190,7 @@ public class PanelGCells extends JPanel {
                     
             } catch (Exception e) {
                 //TODO: handle exception
-                System.out.println("Algo salio mal");
+                System.out.println("No se pudo pintar");
             }
             
 

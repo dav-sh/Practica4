@@ -9,7 +9,7 @@ public class PanelGDice extends JPanel implements ActionListener{
     Random rand = new Random();
     int random = 0;
     JLabel label;
-    JLabel label2;
+    JLabel label2, label3;
     int turno =0;
     PanelGCells cellsP;
     int [] players_Id;
@@ -23,6 +23,8 @@ public class PanelGDice extends JPanel implements ActionListener{
         add(addButton("Tirar DADO"));
         add(Box.createRigidArea(new Dimension(0,20)));
         addLabel2("Turno Jugador: 1");
+        add(Box.createRigidArea(new Dimension(0,20)));
+        addLabel3("Info");
         setBackground(new Color(0,75,255));
     }
 
@@ -45,6 +47,12 @@ public class PanelGDice extends JPanel implements ActionListener{
         this.label2.setFont(new Font("BOLD", Font.ITALIC, 10));
         this.add(this.label2, BorderLayout.CENTER);
     }
+    private void addLabel3(String name){
+        this.label3 = new JLabel(name, JLabel.CENTER);
+        this.label3.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+        this.label3.setFont(new Font("BOLD", Font.ITALIC, 10));
+        this.add(this.label3, BorderLayout.CENTER);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -52,6 +60,7 @@ public class PanelGDice extends JPanel implements ActionListener{
         System.out.println("turno actual " + this.turno);
         this.random = getRandom();
         this.label.setText(" "+this.random);
+        this.label3.setText("<html><body>Linea 1 <br> Linea 2 <br>linea 3 </body></html>");
         cellsP.paintCell(this.turno, this.random);
         this.turno++;
         cambiaTurno();

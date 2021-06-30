@@ -2,6 +2,7 @@ package src.panels;
 import java.awt.*;
 import javax.swing.*;
 
+import src.ficherosbin.FicheroBinario;
 import src.windows.*;
 
 import java.awt.event.*;
@@ -9,7 +10,8 @@ import java.awt.event.*;
 
 public class PanelMenu extends JPanel implements ActionListener{
     MPlayers mplayers = new MPlayers();
-    private String[] buttons = {"See Players","Add New Player","Start Game","Statistics"};
+    
+    private String[] buttons = {"See Players","Add New Player","Start Game","Statistics","Save Data","Read Data"};
 
 
     public PanelMenu(){
@@ -65,12 +67,18 @@ public class PanelMenu extends JPanel implements ActionListener{
                 System.out.println("Hola soy Statistics");
                 mplayers.statistics();
                 break;
+            case "Save Data":
+                System.out.println("Hola soy save data");
+                FicheroBinario fichero = new FicheroBinario(mplayers.getPlayer());
+                fichero.escribirBin();
+                break;
+            case "Read Data":
+                System.out.println("Hola soy read data");
+                FicheroBinario fichero2 = new FicheroBinario(mplayers.getPlayer());
+                fichero2.leerBin();
+                break;
             default:
 
         }
-        
-        
     }
-
-
 }

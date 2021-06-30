@@ -1,5 +1,8 @@
 package src.player;
-public class Player{
+
+import java.io.Serializable;
+
+public class Player implements Serializable{
     private String name;
     private String lastName;
     private int id;
