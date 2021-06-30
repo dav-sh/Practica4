@@ -2,16 +2,20 @@ package src.cell;
 import java.awt.*;
 
 public class Retrocede extends Cell {
-    public Retrocede(){
+    int cantidadPos;
+    public Retrocede(int cantidadPos){
         super("Retrocede", new Color(110,134,97));
+        this.cantidadPos = cantidadPos;
     }
     @Override
 	public String getInfo() {
-        return "<html><body>Linea 1 <br> Retrocede <br>linea 3 </body></html>";
+        return "<html><body>Te toca <br> Retroceder <br> "+this.cantidadPos+" </body></html>";
 		// TODO Auto-generated method stub
 		
 	}
-    
+    public int getCantidadPos() {
+        return cantidadPos;
+    }
 
     
 }

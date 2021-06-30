@@ -181,16 +181,16 @@ public class PanelGCells extends JPanel {
                                     celdas[posicionx][posiciony]=new Tiradados();
                                     break;
                                 case "avanza":
-                                    celdas[posicionx][posiciony]=new Avanza();
+                                    celdas[posicionx][posiciony]=new Avanza(valores[2]);
                                     break;
                                 case "retrocede":
-                                    celdas[posicionx][posiciony]=new Retrocede();
+                                    celdas[posicionx][posiciony]=new Retrocede(valores[2]);
                                     break;
                                 case "subida":
-                                    celdas[posicionx][posiciony]=new Subida();
+                                    celdas[posicionx][posiciony]=new Subida(valores[2],valores[3]);
                                     break;
                                 case "bajada":
-                                    celdas[posicionx][posiciony]=new Bajada();
+                                    celdas[posicionx][posiciony]=new Bajada(valores[2],valores[3]);
                                     break;
                                 default:
                             }
