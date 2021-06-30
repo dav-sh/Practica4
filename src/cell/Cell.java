@@ -4,8 +4,8 @@ import java.awt.*;
 
 public abstract class Cell extends JLabel {
 
-    public Cell(String name, Color color){
-        setText(name);
+    public Cell(String name, Color color, String pos){
+        setText(name+pos);
         setHorizontalAlignment(0); 
         setVerticalAlignment(0);
         setBackground(color); //change color of background

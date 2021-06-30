@@ -4,8 +4,8 @@ import java.awt.*;
 public class Bajada extends Cell {
     int row;
     int column;
-    public Bajada(int row, int column){
-        super("Bajada", new Color(110,134,97));
+    public Bajada(int row, int column, String pos){
+        super("Bajada", new Color(110,134,97), pos);
         this.row = row;
         this.column = column;
     }

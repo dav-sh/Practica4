@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class Vacia extends Cell {
 
-    public Vacia(){
-        super("Vacia", new Color(110,164,97));
+    public Vacia(String pos){
+        super("Vacia", new Color(110,164,97), pos);
     }
     @Override
 	public String getInfo() {

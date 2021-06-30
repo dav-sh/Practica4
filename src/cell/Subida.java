@@ -4,8 +4,8 @@ import java.awt.*;
 public class Subida extends Cell {
     int row;
     int column;
-    public Subida(int row, int column){
-        super("Subida", new Color(110,207,97));
+    public Subida(int row, int column, String pos){
+        super("Subida", new Color(110,207,97), pos);
         this.row = row;
         this.column = column;
     }

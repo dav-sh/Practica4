@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class PierdeTurno extends Cell {
 
-    public PierdeTurno(){
-        super("Pierde",new Color(110,134,97));
+    public PierdeTurno(String pos){
+        super("Pierde",new Color(110,134,97), pos);
 
         
     }

@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class Tiradados extends Cell {
 
-    public Tiradados(){
-        super("Tiradados", new Color(110,207,97));
+    public Tiradados(String pos){
+        super("Tiradados", new Color(110,207,97), pos);
     }
 
     @Override

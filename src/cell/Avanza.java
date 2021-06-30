@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class Avanza extends Cell {
     int positions;
-    public Avanza(int positions){
-        super("Avanza", new Color(110,207,97));
+    public Avanza(int positions, String pos){
+        super("Avanza", new Color(110,207,97), pos);
         this.positions = positions;
     }
     @Override

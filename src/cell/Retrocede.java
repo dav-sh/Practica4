@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class Retrocede extends Cell {
     int cantidadPos;
-    public Retrocede(int cantidadPos){
-        super("Retrocede", new Color(110,134,97));
+    public Retrocede(int cantidadPos, String pos){
+        super("Retrocede", new Color(110,134,97), pos);
         this.cantidadPos = cantidadPos;
     }
     @Override

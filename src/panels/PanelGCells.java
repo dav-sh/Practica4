@@ -204,22 +204,22 @@ public class PanelGCells extends JPanel {
                             
                             switch (nameData){
                                 case "pierdeturno":
-                                    celdas[posicionx][posiciony]=new PierdeTurno();
+                                    celdas[posicionx][posiciony]=new PierdeTurno(" "+posicionx+","+posiciony);
                                     break;
                                 case "tiradados":
-                                    celdas[posicionx][posiciony]=new Tiradados();
+                                    celdas[posicionx][posiciony]=new Tiradados(" "+posicionx+","+posiciony);
                                     break;
                                 case "avanza":
-                                    celdas[posicionx][posiciony]=new Avanza(valores[2]);
+                                    celdas[posicionx][posiciony]=new Avanza(valores[2]," "+posicionx+","+posiciony);
                                     break;
                                 case "retrocede":
-                                    celdas[posicionx][posiciony]=new Retrocede(valores[2]);
+                                    celdas[posicionx][posiciony]=new Retrocede(valores[2]," "+posicionx+","+posiciony);
                                     break;
                                 case "subida":
-                                    celdas[posicionx][posiciony]=new Subida(valores[2],valores[3]);
+                                    celdas[posicionx][posiciony]=new Subida(valores[2],valores[3]," "+posicionx+","+posiciony);
                                     break;
                                 case "bajada":
-                                    celdas[posicionx][posiciony]=new Bajada(valores[2],valores[3]);
+                                    celdas[posicionx][posiciony]=new Bajada(valores[2],valores[3]," "+posicionx+","+posiciony);
                                     break;
                                 default:
                             }
@@ -239,7 +239,7 @@ public class PanelGCells extends JPanel {
 
         }
         if(celdas[posicionx][posiciony]==null){
-            celdas[posicionx][posiciony] = new Vacia();
+            celdas[posicionx][posiciony] = new Vacia(" "+posicionx+","+posiciony);
         }
     }
 
