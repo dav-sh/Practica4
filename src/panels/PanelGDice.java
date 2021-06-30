@@ -65,7 +65,7 @@ public class PanelGDice extends JPanel implements ActionListener{
         this.turno++;
         cambiaTurno();
         System.out.println("Nuevo turno " + this.turno);
-
+        
         
 
         

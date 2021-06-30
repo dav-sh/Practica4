@@ -23,7 +23,7 @@ public class Game extends JFrame{
     }
 
     public void createJFGame(){
-        cellsP = new PanelGCells(players_Id);
+        cellsP = new PanelGCells(players_Id, players);
         diceP = new PanelGDice(cellsP,players_Id);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //not visible
         this.getContentPane().add(diceP,"West");
@@ -75,7 +75,7 @@ public class Game extends JFrame{
 
     }
 
-
+    
     
     private boolean idexists(int id){
         boolean op = false;

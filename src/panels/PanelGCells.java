@@ -9,6 +9,7 @@ import src.cell.*;
 import src.manejoarchivos.LecturaA;
 import src.manejoarchivos.ObtenerDatos;
 import src.manejoarchivos.ObtenerValores;
+import src.player.Player;
 
 
 public class PanelGCells extends JPanel {
@@ -20,13 +21,15 @@ public class PanelGCells extends JPanel {
     int numberPlayers;
     int [] posX;
     int [] posY;
+    Player[]players;
     final private String path = "d:/Desktop/sinErrores.txt";
 
 
 
 
 
-    public PanelGCells(int[] players_Id){
+    public PanelGCells(int[] players_Id, Player[] players){
+        this.players = players;
         iniciatablero();
         celdas = new Cell[rows][columns];
         this.players_Id = players_Id;
@@ -68,6 +71,7 @@ public class PanelGCells extends JPanel {
 
 
     public int[] position(int random, int row, int column){ // 0 , 9
+
         int[] position = new int[2];
         // int rows =10;
         // int columns = 10;
@@ -114,45 +118,38 @@ public class PanelGCells extends JPanel {
     public void paintCell(int turnoP, int Random, JLabel label3){
         celdas[0][0].setBackground(Color.WHITE);
         int [] pos = position(Random, posX[turnoP], posY[turnoP]); //avanza, actual x, actual y --> nueva posicion
-        if(evaluaCell(celdas[pos[0]][pos[1]], label3)){ //verifica si caera en una celda especial y si es asi, recalcula la posicion
-            //aqui tengo q volver a pintar la celda para dar la ilusion que avance
+        if(pos[0]!=rows-1 && pos[1]!=columns-1){ //
+        
+            if(evaluaCell(celdas[pos[0]][pos[1]], label3)){ //verifica si caera en una celda especial y si es asi, recalcula la posicion
+                //aqui tengo q volver a pintar la celda para dar la ilusion que avance
+                imprimeActual(turnoP, pos);
+                pos = reposicion(celdas[pos[0]][pos[1]],pos[0], pos[1]);
+                //System.out.println("Ojo, me reposicione");
+            }
             imprimeActual(turnoP, pos);
-            pos = reposicion(celdas[pos[0]][pos[1]],pos[0], pos[1]);
-            //System.out.println("Ojo, me reposicione");
+            resetColor(celdas[posX[turnoP]][posY[turnoP]], posX[turnoP], posY[turnoP]);
+            celdas[0][0].setBackground(Color.WHITE);
+            posX[turnoP]=pos[0];
+            posY[turnoP]=pos[1];
+        
+        
         }
-        imprimeActual(turnoP, pos);
-        resetColor(celdas[posX[turnoP]][posY[turnoP]], posX[turnoP], posY[turnoP]);
-
-
-        //label3.setText(celdas[pos[0]][pos[1]].getInfo());
-
-        // if(turnoP==0){
-        //     celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.RED);
-        //     celdas[pos[0]][pos[1]].setBackground(Color.RED);
-        // }else if(turnoP == 1){
-        //     celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.LIGHT_GRAY);
-
-        //     celdas[pos[0]][pos[1]].setBackground(Color.LIGHT_GRAY);
-
-        // }else if(turnoP==2){
-        //     celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.YELLOW);
-
-        //     celdas[pos[0]][pos[1]].setBackground(Color.YELLOW);
-
-        // }else if(turnoP==3){
-        //     celdas[pos[0]][pos[1]].setBackground(Color.CYAN);
-
-        // }else if(turnoP==4){
-        //     celdas[pos[0]][pos[1]].setBackground(Color.MAGENTA);
-
-        // }else if(turnoP==5){
-        //     celdas[pos[0]][pos[1]].setBackground(Color.ORANGE);
-
-        // }
-        //celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.BLUE);
-        celdas[0][0].setBackground(Color.WHITE);
-        posX[turnoP]=pos[0];
-        posY[turnoP]=pos[1];
+        else{
+            JOptionPane.showMessageDialog(null, "Jugador con id: " + players_Id[turnoP] + " Gano");
+            for(int i = 0; i<players_Id.length; i++){
+                System.out.println("id"+ players_Id[i]);
+                if(players_Id[turnoP]==players[players_Id[i]-1].getId()){
+                    System.out.println("id win " + players_Id[turnoP]+ "id p " + players[players_Id[i]-1].getId());
+                    players[players_Id[i]-1].setWins(players[players_Id[i]-1].getWins()+1);
+                    players[players_Id[i]-1].setJugadas(players[players_Id[i]-1].getJugadas()+1);
+                }else{
+                    System.out.println("id Lo " + players_Id[turnoP]+ "id p " + players[players_Id[i]-1].getId());
+                    players[players_Id[i]-1].setLosses(players[players_Id[i]-1].getLosses()+1);
+                    players[players_Id[i]-1].setJugadas(players[players_Id[i]-1].getJugadas()+1);
+                }
+            }
+            
+        }
     }
 
     public void resetColor(Cell cell, int x, int y){
