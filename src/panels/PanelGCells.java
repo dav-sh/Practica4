@@ -2,7 +2,7 @@ package src.panels;
 
 import javax.swing.*;
 import java.awt.*;
-import src.cell.Cell; 
+import src.cell.*; 
 
 
 //lecuta de archivos
@@ -35,7 +35,7 @@ public class PanelGCells extends JPanel {
         this.posY = new int[numberPlayers];
         setSize(690,550);
         fillArray();
-        manejaPenitencias();
+        
     }
     
 
@@ -44,11 +44,13 @@ public class PanelGCells extends JPanel {
         try {
             
             
-            System.out.println("filass"+this.rows+" c"+this.columns);
+            //System.out.println("filass"+this.rows+" c"+this.columns);
             setLayout(new GridLayout(rows,columns));
             for(int i=0;i<rows;i++){ //rows
                 for(int j=0;j<columns;j++){ //columns
-                    celdas[i][j] = new Cell(" "+i+","+j); //add
+                    manejaPenitencias(i,j);
+                    // celdas[i][j] = new Vacia();
+                    //celdas[i][j] = new Cell(" "+i+","+j); //add
                     this.add(celdas[i][j]);
                 }
             }
@@ -109,8 +111,12 @@ public class PanelGCells extends JPanel {
 
 
 
-    public void paintCell(int turnoP, int Random){
+    public void paintCell(int turnoP, int Random, JLabel label3){
+
         int [] pos = position(Random, posX[turnoP], posY[turnoP]); //avanza, actual x, actual y
+        //label3.setText(celdas[pos[0]][pos[1]].getInfo());
+        evaluaCell(celdas[pos[0]][pos[1]], label3);
+
         if(turnoP==0){
             celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.RED);
             celdas[pos[0]][pos[1]].setBackground(Color.RED);
@@ -146,7 +152,7 @@ public class PanelGCells extends JPanel {
 
 
 
-    public void manejaPenitencias(){
+    public void manejaPenitencias(int posicionx, int posiciony){
         LecturaA lectura = new LecturaA();
         String[] texto = lectura.getLines(path); //array de lineas con todo el texto
         //obtengo una linea especifica para posteriormente manipularla
@@ -155,39 +161,47 @@ public class PanelGCells extends JPanel {
             try {
                 String nameData = penitencias[i];
 
-                String result = "";
+                String linea = "";
                     //separo el nombre y los valores de la linea anterior
-                int ind;
-                for(int j = 0; j<texto.length; j++){
 
-                    if((ind = texto[j].indexOf(nameData))!=-1){
-                        //if(datos[i].startsWith(nameData)){
-                        System.out.println("Encontrado en "+ ind);
-                        result = texto[j];
-                        String linea = result;
+                for(int j = 0; j<texto.length;j++){
+
+                    // if((texto[j].indexOf(nameData))!=-1){
+                    if(texto[j].startsWith(nameData)){
+                        linea = texto[j];
                         ObtenerValores obtengo = new ObtenerValores();
                         int[] valores = obtengo.seeValues(linea);
-                        
-                        if(nameData.equals("pierdeturno")){
-                            celdas[valores[0]][valores[1]].setBackground(Color.BLACK);
-                        }else if(nameData.equals("tiradados")){
-                            celdas[valores[0]][valores[1]].setBackground(new Color(20,2,15));
-                        }else if(nameData.equals("avanza")){
-                            celdas[valores[0]][valores[1]].setBackground(new Color(13,160,0));
-                        }else if(nameData.equals("retrocede")){
-                            celdas[valores[0]][valores[1]].setBackground(new Color(20,60,65));
-                        }else if(nameData.equals("subida")){
-                            celdas[valores[0]][valores[1]].setBackground(new Color(1,16,30));
-                        }else if(nameData.equals("bajada")){
-                            celdas[valores[0]][valores[1]].setBackground(new Color(56,100,3));
+                        if(valores[0]==posicionx && valores[1]==posiciony){
+                            
+                            switch (nameData){
+                                case "pierdeturno":
+                                    celdas[posicionx][posiciony]=new PierdeTurno();
+                                    break;
+                                case "tiradados":
+                                    celdas[posicionx][posiciony]=new Tiradados();
+                                    break;
+                                case "avanza":
+                                    celdas[posicionx][posiciony]=new Avanza();
+                                    break;
+                                case "retrocede":
+                                    celdas[posicionx][posiciony]=new Retrocede();
+                                    break;
+                                case "subida":
+                                    celdas[posicionx][posiciony]=new Subida();
+                                    break;
+                                case "bajada":
+                                    celdas[posicionx][posiciony]=new Bajada();
+                                    break;
+                                default:
+                            }
+
+
                         }
 
                     }
 
-
-
                 }
-                    
+                System.out.println("Sali"); 
             } catch (Exception e) {
                 //TODO: handle exception
                 System.out.println("No se pudo pintar");
@@ -195,8 +209,16 @@ public class PanelGCells extends JPanel {
             
 
         }
+        if(celdas[posicionx][posiciony]==null){
+            celdas[posicionx][posiciony] = new Vacia();
+        }
     }
 
+
+
+
+
+    
     public void iniciatablero(){
         LecturaA lectura = new LecturaA();
         String[] texto = lectura.getLines(path); //array de lineas con todo el texto
@@ -221,6 +243,30 @@ public class PanelGCells extends JPanel {
             }
         }
 
+    }
+
+
+    private void evaluaCell(Cell cell, JLabel label3){
+        if(cell instanceof Avanza){
+            label3.setText(cell.getInfo());
+        }else if(cell instanceof Bajada){
+            label3.setText(cell.getInfo());
+        }else if(cell instanceof PierdeTurno){
+            label3.setText(cell.getInfo());
+
+        }else if(cell instanceof Retrocede){
+            label3.setText(cell.getInfo());
+
+        }else if(cell instanceof Subida){
+            label3.setText(cell.getInfo());
+
+        }else if(cell instanceof Tiradados){
+            label3.setText(cell.getInfo());
+
+        }else if(cell instanceof Vacia){
+            label3.setText(cell.getInfo());
+
+        }
     }
 
 

@@ -1,24 +1,19 @@
 package src.cell;
-import javax.swing.*;
 import java.awt.*;
 
-public class PierdeTurno extends JLabel {
-    boolean penitencia;
-    public PierdeTurno(String name){
-        this.penitencia = false;
-        setText(name);
-        setHorizontalAlignment(0); 
-        setVerticalAlignment(0);
-        setBackground(Color.BLUE); //change color of background
-        setOpaque(true); //see the background color
-        setSize(100, 100); //set dimensions of JLabel
-        setForeground(Color.WHITE); //change color of text
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 5)); //create a new border and define color and thickness (grosor)
+public class PierdeTurno extends Cell {
+
+    public PierdeTurno(){
+        super("Pierde",new Color(110,134,97));
+
         
     }
-    public boolean getPenitencia(){
-        return penitencia;
-    }
+    @Override
+	public String getInfo() {
+        return "<html><body>Linea 1 <br> Pierte T <br>linea 3 </body></html>";
+		// TODO Auto-generated method stub
+		
+	}
 
     
 

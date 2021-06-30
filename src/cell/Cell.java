@@ -2,23 +2,22 @@ package src.cell;
 import javax.swing.*;
 import java.awt.*;
 
-public class Cell extends JLabel {
-    boolean penitencia;
-    public Cell(String name){
-        this.penitencia = false;
+public abstract class Cell extends JLabel {
+
+    public Cell(String name, Color color){
         setText(name);
         setHorizontalAlignment(0); 
         setVerticalAlignment(0);
-        setBackground(Color.BLUE); //change color of background
+        setBackground(color); //change color of background
         setOpaque(true); //see the background color
         setSize(100, 100); //set dimensions of JLabel
         setForeground(Color.WHITE); //change color of text
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 5)); //create a new border and define color and thickness (grosor)
+        setBorder(BorderFactory.createLineBorder(new Color(110,119,97), 3)); //create a new border and define color and thickness (grosor)
         
     }
-    public boolean getPenitencia(){
-        return penitencia;
-    }
+
+    public abstract String getInfo();
+
 
     
 

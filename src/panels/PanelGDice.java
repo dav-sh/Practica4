@@ -60,8 +60,8 @@ public class PanelGDice extends JPanel implements ActionListener{
         System.out.println("turno actual " + this.turno);
         this.random = getRandom();
         this.label.setText(" "+this.random);
-        this.label3.setText("<html><body>Linea 1 <br> Linea 2 <br>linea 3 </body></html>");
-        cellsP.paintCell(this.turno, this.random);
+        //this.label3.setText(cellsP.getInfo());
+        cellsP.paintCell(this.turno, this.random, label3);
         this.turno++;
         cambiaTurno();
         System.out.println("Nuevo turno " + this.turno);

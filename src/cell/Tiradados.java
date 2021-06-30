@@ -1,26 +1,18 @@
 package src.cell;
-import javax.swing.*;
 import java.awt.*;
 
-public class Tiradados extends JLabel {
-    boolean penitencia;
-    public Tiradados(String name){
-        this.penitencia = false;
-        setText(name);
-        setHorizontalAlignment(0); 
-        setVerticalAlignment(0);
-        setBackground(Color.BLUE); //change color of background
-        setOpaque(true); //see the background color
-        setSize(100, 100); //set dimensions of JLabel
-        setForeground(Color.WHITE); //change color of text
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 5)); //create a new border and define color and thickness (grosor)
-        
-    }
-    public boolean getPenitencia(){
-        return penitencia;
+public class Tiradados extends Cell {
+
+    public Tiradados(){
+        super("Tiradados", new Color(110,207,97));
     }
 
-    
+    @Override
+	public String getInfo() {
+        return "<html><body>Linea 1 <br> Tira <br>linea 3 </body></html>";
+		// TODO Auto-generated method stub
+		
+	}
 
     
 }
