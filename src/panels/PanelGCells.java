@@ -90,8 +90,8 @@ public class PanelGCells extends JPanel {
                 position[1]=column;
                 System.out.println("No puedes avanzar mas");
             }else{
-                position[0]=row+1;  //row
-                position[1]=residuoColumn-1; //a y le sumamos 1   column
+                position[0]=row+1;  
+                position[1]=residuoColumn-1; 
 
             }
 
@@ -113,9 +113,14 @@ public class PanelGCells extends JPanel {
 
     public void paintCell(int turnoP, int Random, JLabel label3){
 
-        int [] pos = position(Random, posX[turnoP], posY[turnoP]); //avanza, actual x, actual y
+        int [] pos = position(Random, posX[turnoP], posY[turnoP]); //avanza, actual x, actual y --> nueva posicion
+        if(evaluaCell(celdas[pos[0]][pos[1]], label3)){ //verifica si caera en una celda especial y si es asi, recalcula la posicion
+            //aqui tengo q volver a pintar la celda para dar la ilusion que avance
+            imprimeActual(turnoP, pos);
+            pos = reposicion(celdas[pos[0]][pos[1]],pos[0], pos[1]);
+            System.out.println("Ojo, me reposicione");
+        }
         //label3.setText(celdas[pos[0]][pos[1]].getInfo());
-        evaluaCell(celdas[pos[0]][pos[1]], label3);
 
         if(turnoP==0){
             celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.RED);
@@ -201,7 +206,7 @@ public class PanelGCells extends JPanel {
                     }
 
                 }
-                System.out.println("Sali"); 
+                //System.out.println("Sali"); 
             } catch (Exception e) {
                 //TODO: handle exception
                 System.out.println("No se pudo pintar");
@@ -246,7 +251,8 @@ public class PanelGCells extends JPanel {
     }
 
 
-    private void evaluaCell(Cell cell, JLabel label3){
+    private  boolean evaluaCell(Cell cell, JLabel label3){
+        boolean modifify = true;
         if(cell instanceof Avanza){
             label3.setText(cell.getInfo());
         }else if(cell instanceof Bajada){
@@ -265,12 +271,106 @@ public class PanelGCells extends JPanel {
 
         }else if(cell instanceof Vacia){
             label3.setText(cell.getInfo());
-
+            modifify = false;
         }
+        return modifify;
+    }
+
+    private int[] reposicion(Cell cell, int pRow, int pCol){
+        int[] valores = new int[2];
+        int [] vals = cell.getPositions();
+        if(cell instanceof Avanza){
+            JOptionPane.showMessageDialog(null, "Avanzaste"+ vals[0]);
+
+            valores = position(vals[0], pRow, pCol);
+        }else if(cell instanceof Bajada){
+            JOptionPane.showMessageDialog(null, "Bajaste a"+ vals[0] +","+vals[1]);
+
+            valores[0] = vals[0];
+            valores[1] = vals[1];
+        }else if(cell instanceof PierdeTurno){
+            JOptionPane.showMessageDialog(null, "Perdiste turno");
+
+            valores[0] = pRow;
+            valores[1] = pCol;
+        }else if(cell instanceof Retrocede){
+            JOptionPane.showMessageDialog(null, "Retrocediste"+ vals[0]);
+
+            valores = positionR(vals[0], pRow, pCol);
+
+        }else if(cell instanceof Subida){
+            JOptionPane.showMessageDialog(null, "Subiste a"+ vals[0] +","+vals[1]);
+            
+            valores[0] = vals[0];
+            valores[1] = vals[1];
+        }else if(cell instanceof Tiradados){
+            JOptionPane.showMessageDialog(null, "Turno extra");
+
+            valores[0] = pRow;
+            valores[1] = pCol;
+        }
+        return valores;
     }
 
 
+    public int[] positionR(int random, int row, int column){ // 0 , 9 //se supone que va en reversa
+        int[] position = new int[2];
 
+        int residuoColumn=0;
+
+        if((column-random) <0 && row >= 0){ //si la resta del numero random y la posicion actual de columna es menor a cero se calcula nueva fila siempre y cuando la fila  sea >= 0
+            while((column-random)<0){
+                random--;
+                residuoColumn++;
+
+            }
+            System.out.println(row+""+column+":"+random+":"+residuoColumn);
+            if((row - 1) <0){
+                position[0]=row; //row
+                position[1]=column;
+                System.out.println("No puedes retroceder mas");
+            }else{
+                System.out.println("Salto de fila hacia atras");
+                position[0]=row-1;  
+                position[1]=columns-residuoColumn; 
+
+            }
+
+            
+        }else if(  (column-random) >=0 && row >= 0  ){ //si la suma del random y la columan es menor a las columnas y la fila es menor que las filas
+            position[0]=row; //row
+            position[1]=column-random; //column
+            
+        }
+        return position;
+    }
+
+    public void imprimeActual(int turnoP, int[] pos){
+        if(turnoP==0){
+            celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.RED);
+            celdas[pos[0]][pos[1]].setBackground(Color.RED);
+        }else if(turnoP == 1){
+            celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.LIGHT_GRAY);
+
+            celdas[pos[0]][pos[1]].setBackground(Color.LIGHT_GRAY);
+
+        }else if(turnoP==2){
+            celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.YELLOW);
+
+            celdas[pos[0]][pos[1]].setBackground(Color.YELLOW);
+
+        }else if(turnoP==3){
+            celdas[pos[0]][pos[1]].setBackground(Color.CYAN);
+
+        }else if(turnoP==4){
+            celdas[pos[0]][pos[1]].setBackground(Color.MAGENTA);
+
+        }else if(turnoP==5){
+            celdas[pos[0]][pos[1]].setBackground(Color.ORANGE);
+
+        }
+        //celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.BLUE);
+    }
 
 
 }

@@ -13,9 +13,14 @@ public class Avanza extends Cell {
 		// TODO Auto-generated method stub
 		
 	}
-    public int getPositions(){
-        return positions;
-    }
+	@Override
+	public int[] getPositions() {
+		// TODO Auto-generated method stub
+        int[] positions = new int[1];
+        positions[0] = this.positions;
+		return positions;
+	}
+    
 
     
 

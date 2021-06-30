@@ -14,7 +14,7 @@ public class ObtenerValores {
         try {
             
             for(int i=0;i<srt.length; i++){
-                System.out.println(srt[i]);
+                //System.out.println(srt[i]);
                 position[i] = Integer.valueOf(srt[i]);
             }
 

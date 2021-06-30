@@ -15,12 +15,14 @@ public class Subida extends Cell {
 		// TODO Auto-generated method stub
 		
 	}
-    public int getRow() {
-        return row;
-    }
-    public int getColumn() {
-        return column;
-    }
-
+    @Override
+	public int[] getPositions() {
+		// TODO Auto-generated method stub
+        int[] positions = new int[2];
+        positions[0] = this.row;
+        positions[1] = this.column;
+		return positions;
+	}
+    
     
 }

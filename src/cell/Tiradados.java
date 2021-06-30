@@ -14,5 +14,10 @@ public class Tiradados extends Cell {
 		
 	}
 
-    
+    @Override
+	public int[] getPositions() {
+		// TODO Auto-generated method stub
+        int[] positions = new int[2];
+		return positions;
+	}
 }

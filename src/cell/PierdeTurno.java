@@ -14,6 +14,13 @@ public class PierdeTurno extends Cell {
 		// TODO Auto-generated method stub
 		
 	}
+    @Override
+	public int[] getPositions() {
+		// TODO Auto-generated method stub
+        int[] positions = new int[1];
+		return positions;
+	}
+    
 
     
 

@@ -13,9 +13,13 @@ public class Retrocede extends Cell {
 		// TODO Auto-generated method stub
 		
 	}
-    public int getCantidadPos() {
-        return cantidadPos;
-    }
-
+    @Override
+	public int[] getPositions() {
+		// TODO Auto-generated method stub
+        int[] positions = new int[1];
+        positions[0] = this.cantidadPos;
+		return positions;
+	}
+    
     
 }

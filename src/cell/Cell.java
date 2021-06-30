@@ -17,6 +17,7 @@ public abstract class Cell extends JLabel {
     }
 
     public abstract String getInfo();
+    public abstract int[] getPositions();
 
 
     
