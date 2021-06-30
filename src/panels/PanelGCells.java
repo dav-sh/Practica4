@@ -112,46 +112,73 @@ public class PanelGCells extends JPanel {
 
 
     public void paintCell(int turnoP, int Random, JLabel label3){
-
+        celdas[0][0].setBackground(Color.WHITE);
         int [] pos = position(Random, posX[turnoP], posY[turnoP]); //avanza, actual x, actual y --> nueva posicion
         if(evaluaCell(celdas[pos[0]][pos[1]], label3)){ //verifica si caera en una celda especial y si es asi, recalcula la posicion
             //aqui tengo q volver a pintar la celda para dar la ilusion que avance
             imprimeActual(turnoP, pos);
             pos = reposicion(celdas[pos[0]][pos[1]],pos[0], pos[1]);
-            System.out.println("Ojo, me reposicione");
+            //System.out.println("Ojo, me reposicione");
         }
+        imprimeActual(turnoP, pos);
+        resetColor(celdas[posX[turnoP]][posY[turnoP]], posX[turnoP], posY[turnoP]);
+
+
         //label3.setText(celdas[pos[0]][pos[1]].getInfo());
 
-        if(turnoP==0){
-            celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.RED);
-            celdas[pos[0]][pos[1]].setBackground(Color.RED);
-        }else if(turnoP == 1){
-            celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.LIGHT_GRAY);
+        // if(turnoP==0){
+        //     celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.RED);
+        //     celdas[pos[0]][pos[1]].setBackground(Color.RED);
+        // }else if(turnoP == 1){
+        //     celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.LIGHT_GRAY);
 
-            celdas[pos[0]][pos[1]].setBackground(Color.LIGHT_GRAY);
+        //     celdas[pos[0]][pos[1]].setBackground(Color.LIGHT_GRAY);
 
-        }else if(turnoP==2){
-            celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.YELLOW);
+        // }else if(turnoP==2){
+        //     celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.YELLOW);
 
-            celdas[pos[0]][pos[1]].setBackground(Color.YELLOW);
+        //     celdas[pos[0]][pos[1]].setBackground(Color.YELLOW);
 
-        }else if(turnoP==3){
-            celdas[pos[0]][pos[1]].setBackground(Color.CYAN);
+        // }else if(turnoP==3){
+        //     celdas[pos[0]][pos[1]].setBackground(Color.CYAN);
 
-        }else if(turnoP==4){
-            celdas[pos[0]][pos[1]].setBackground(Color.MAGENTA);
+        // }else if(turnoP==4){
+        //     celdas[pos[0]][pos[1]].setBackground(Color.MAGENTA);
 
-        }else if(turnoP==5){
-            celdas[pos[0]][pos[1]].setBackground(Color.ORANGE);
+        // }else if(turnoP==5){
+        //     celdas[pos[0]][pos[1]].setBackground(Color.ORANGE);
 
-        }
-        celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.BLUE);
+        // }
+        //celdas[posX[turnoP]][posY[turnoP]].setBackground(Color.BLUE);
         celdas[0][0].setBackground(Color.WHITE);
         posX[turnoP]=pos[0];
         posY[turnoP]=pos[1];
     }
 
+    public void resetColor(Cell cell, int x, int y){
+        if(cell instanceof Avanza){
+            celdas[x][y].setBackground(new Color(110,207,97));
 
+        }else if(cell instanceof Bajada){
+            celdas[x][y].setBackground(new Color(110,134,97));
+
+        }else if(cell instanceof PierdeTurno){
+            celdas[x][y].setBackground(new Color(110,134,97));
+
+        }else if(cell instanceof Retrocede){
+            celdas[x][y].setBackground(new Color(110,134,97));;
+
+        }else if(cell instanceof Subida){
+            celdas[x][y].setBackground(new Color(110,207,97));
+
+        }else if(cell instanceof Tiradados){
+            celdas[x][y].setBackground(new Color(110,207,97));
+
+        }else if(cell instanceof Vacia){
+            celdas[x][y].setBackground(new Color(110,164,97));
+
+        }
+    }
 
 
 
@@ -309,6 +336,7 @@ public class PanelGCells extends JPanel {
             valores[0] = pRow;
             valores[1] = pCol;
         }
+        resetColor(cell, pRow, pCol);
         return valores;
     }
 
